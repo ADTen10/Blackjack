@@ -1,25 +1,26 @@
 import new_deck
 
 
-"""This function reveals the score of the a hand"""
+"""This function reveals the score of a hand"""
 
 #write a test for this
 def score(hand):
-    total0=0
+    total_0=0
+    #total_12=12
     for card in hand:
 
         if (card[0]) in ('T','J','Q','K'):
-            total0 += 10
+            total_0 += 10
 
         elif (card[0]) == 'A':
-            total0 += 11
+            total_0 += 11
 
         elif (card[0]) not in ('T','J','Q','K'):
-                total0 += int(card[0])
+                total_0 += int(card[0])
 
-    return total0
+    return total_0
 
-"""This function deals the player's first hand"""
+"""This function deals the player's starting hand"""
 def deal_phand():
 
     card1 = new_deck.hit()
@@ -29,7 +30,7 @@ def deal_phand():
 
 
 p_start_hand = deal_phand()
-print ("Player's starting hand:",p_start_hand)
+#print ("Player's starting hand:",p_start_hand)
 
 
 """ This will deal the player a new card for their hand"""
@@ -42,9 +43,7 @@ p_hand_hit1 = add_card_phand()
 
 print ("player's hand with 1 new card", p_hand_hit1)
 
-"""this adds up the players hand"""
 print("This is the player's score after a new card:", score(p_hand_hit1))
-
 
 """This function deals 2 cards to the dealer, with only one shown"""
 def deal_dhand():
@@ -67,12 +66,35 @@ def addcard_dhand(d_start_hand):
 
 dhand = (addcard_dhand(d_start_hand))
 print("Dealers full hand",dhand)
-
-
-
-
-
 print ("Dealer's score is",(score(dhand)))
+
+"""This decides whether the dealer wants a new hand, scores the new hand and decides if bust"""
+
+
+def dhand_newcard (dhand):
+
+    if (score(dhand)) == [17, 18, 19, 20, 21]:
+        print ("Dealer has stuck")
+        return dhand
+
+    elif (score(dhand)) >21:
+        print ("Dealer is bust")
+        return dhand
+
+    elif (score(dhand)) <17:
+            dhand.append(new_deck.hit())
+            print ("Dealer's new hand is:")
+    return dhand
+
+
+
+
+dhand2 = dhand_newcard(dhand)
+
+print (dhand2)
+
+#print ("Dealer's hand:",dhand2)
+#print ("Dealer's new score is",(score(dhand2)))
 
 
 
