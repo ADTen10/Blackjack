@@ -6,10 +6,5 @@ def get_deck():
 
 def hit ():
     card = iter(get_deck())
-    #(print(next(card)))
     return next(card)
-
-
-
-
 

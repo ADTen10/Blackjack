@@ -6,7 +6,7 @@ import new_deck
 #write a test for this
 def score(hand):
     total_0=0
-    #total_12=12
+
     for card in hand:
 
         if (card[0]) in ('T','J','Q','K'):
@@ -17,8 +17,8 @@ def score(hand):
 
         elif (card[0]) not in ('T','J','Q','K'):
                 total_0 += int(card[0])
-
     return total_0
+
 
 """This function deals the player's starting hand"""
 def deal_phand():
@@ -30,7 +30,7 @@ def deal_phand():
 
 
 p_start_hand = deal_phand()
-#print ("Player's starting hand:",p_start_hand)
+print ("Player's starting hand:",p_start_hand)
 
 
 """ This will deal the player a new card for their hand"""
@@ -73,25 +73,32 @@ print ("Dealer's score is",(score(dhand)))
 
 def dhand_newcard (dhand):
 
-    if (score(dhand)) == [17, 18, 19, 20, 21]:
-        print ("Dealer has stuck")
+
+    while (score(dhand)) <17:
+                dhand.append(new_deck.hit())
+                print ("Dealer's new hand is:", dhand,"\nDealer's new score is:", score(dhand))
+
+    if (score(dhand)) > 21 == 'A' in dhand:
+        (score(dhand)) - 10
         return dhand
 
     elif (score(dhand)) >21:
-        print ("Dealer is bust")
-        return dhand
+                print ("Dealer's score is:", score(dhand),"\nDealer is bust")
+                return dhand
 
-    elif (score(dhand)) <17:
-            dhand.append(new_deck.hit())
-            print ("Dealer's new hand is:")
-    return dhand
+    elif (score(dhand)) == 17 or 18 or 19 or 20 or 21:
+                print ("Dealer's final score is:", score(dhand), "\nDealer has stuck")
+                return dhand
+
+
+
+
 
 
 
 
 dhand2 = dhand_newcard(dhand)
 
-print (dhand2)
 
 #print ("Dealer's hand:",dhand2)
 #print ("Dealer's new score is",(score(dhand2)))
