@@ -20,9 +20,12 @@ print ("Your score is",deal_hands.score(p_hand))
 d_hand = deal_hands.addcard_dhand(d_start_hand)
 print("\nDealers full hand is",d_hand)
 print ("Dealer's score is:", deal_hands.score(d_hand))
-
+compare_scores=deal_hands.compare_dealer_and_player_scores(p1, d_hand, p_hand)
+print(compare_scores)
 hit_or_stick = deal_hands.ask_player_for_hit(p1,p_hand)
-hit_or_stick
+print(hit_or_stick)
 
+compare_scores=deal_hands.compare_dealer_and_player_scores(p1, d_hand, p_hand)
 
+compare_scores()
 hit_or_stick

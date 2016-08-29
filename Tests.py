@@ -13,6 +13,15 @@ def test_score_3_Aces():
     result = score(hand)
     assert_equal (result,13)
 
+def test_score_ace_and_kings():
+    hand=['A♠','K♠', 'K♠']
+    result=score(hand)
+    assert_equal(result,21)
+
+
+""" Testing whether player can accept a new card to their hand"""
+
+
 def test_ask_player_for_move():
     phand = ['3♦','7♦']
     hit = 'y'

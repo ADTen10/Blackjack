@@ -41,7 +41,7 @@ def add_card_phand(p_start_hand):
 
 def ask_player_for_hit(p1,phand):
     """
-    this does hit
+    this adds a new card to the players hand
     """
     print(p1, "Your score is", (score(phand)))
     hit=input ("\nWould you like another card? y/n")
@@ -52,9 +52,20 @@ def ask_player_for_hit(p1,phand):
     elif hit == 'n':
         print(p1,"has stuck on", (score(phand)))
 
-def compare_dealer_and_player_scores(phand,dhand):
+def compare_dealer_and_player_scores(p1,phand,dhand):
+    """
+    compares the score of the players hand and the dealers hand and decides who has won
+    """
+
     if score(phand) == 21:
-        print(p1, "You have scored 21, you win!!(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧")
+        print(p1, "you have scored 21, you win!!(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧")
+    elif score(dhand) == 21:
+        print ("Dealer has a score of 21 and wins. Sorry! ¯\_(ツ)_/¯")
+    elif score(phand)>21 == score(dhand)<21:
+        print ("Dealer wins this round. Better luck next time ¯\_(ツ)_/¯")
+    elif score(dhand)>21 == score(phand)<21:
+        print(p1, "you have scored 21, you win!!(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧")
+
 
 
 def deal_dhand():
