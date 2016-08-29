@@ -1,15 +1,20 @@
-import deal_hands
+from deal_hands import score
+from nose.tools import assert_equal
 
-def test_score_phand():
-#arrange
-score_phand[3♠,9♠]
-#act
-score_phand[card1+card2]
-#assert
-assert_equal (score_phand==12,score_phand)
+"""testing the scoring function"""
 
-def test_dhand_newcard (dhand)
-    deal_hands.score(dhand) == >21 and 'A' in dhand:
-        (score(dhand)) - 10
-    return dhand
+def test_score_2_Aces():
+    hand=['A♠','A♠']
+    result=score(hand)
+    assert_equal(result,12)
 
+def test_score_3_Aces():
+    hand=['A♠','A♠','A♠']
+    result = score(hand)
+    assert_equal (result,13)
+
+def test_ask_player_for_move():
+    phand = ['3♦','7♦']
+    hit = 'y'
+    phand_with_new_card = ['3♦', '7♦', '3♦']
+    assert_equal(hit,phand_with_new_card)

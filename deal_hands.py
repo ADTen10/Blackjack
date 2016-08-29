@@ -1,10 +1,7 @@
 import new_deck
 
-
-"""This function reveals the score of a hand"""
-
-#write a test for this
 def score(hand):
+    """This function reveals the score of a hand"""
     total_0=0
 
     for card in hand:
@@ -17,12 +14,17 @@ def score(hand):
 
         elif (card[0]) not in ('T','J','Q','K'):
                 total_0 += int(card[0])
+
+
+    for card in hand:
+        if total_0 > 21 and (card[0]) == 'A':
+            total_0 -= 10
+
     return total_0
 
 
-"""This function deals the player's starting hand"""
 def deal_phand():
-
+    """This function deals the player's starting hand"""
     card1 = new_deck.hit()
     card2 = new_deck.hit()
     phand = [card1,card2]
@@ -30,24 +32,33 @@ def deal_phand():
 
 
 p_start_hand = deal_phand()
-print ("Player's starting hand:",p_start_hand)
 
 
-""" This will deal the player a new card for their hand"""
+def add_card_phand(p_start_hand):
+    """ This will deal the player a new card for their hand"""
+    p_start_hand.append(new_deck.hit())
+    return p_start_hand
 
-def add_card_phand():
-   p_start_hand.append(new_deck.hit())
-   return p_start_hand
+def ask_player_for_hit(p1,phand):
+    """
+    this does hit
+    """
+    print(p1, "Your score is", (score(phand)))
+    hit=input ("\nWould you like another card? y/n")
+    if hit == 'y':
+        phand.append(new_deck.hit())
+        print (p1, "Your hand is now", phand,"\nyour cards add up to", score(phand))
+        return phand
+    elif hit == 'n':
+        print(p1,"has stuck on", (score(phand)))
 
-p_hand_hit1 = add_card_phand()
+def compare_dealer_and_player_scores(phand,dhand):
+    if score(phand) == 21:
+        print(p1, "You have scored 21, you win!!(ﾉ◕ヮ◕)ﾉ*:･ﾟ✧")
 
-print ("player's hand with 1 new card", p_hand_hit1)
 
-print("This is the player's score after a new card:", score(p_hand_hit1))
-
-"""This function deals 2 cards to the dealer, with only one shown"""
 def deal_dhand():
-
+    """This function deals 2 cards to the dealer, with only one shown"""
     card = new_deck.hit()
     dhand = [card,'☺']
     return dhand
@@ -55,9 +66,10 @@ def deal_dhand():
 d_start_hand=deal_dhand()
 print ("Dealers starting hand", d_start_hand)
 
-"""This function reveals the delear's second card"""
 
 def addcard_dhand(d_start_hand):
+    """This function reveals the delear's second card by deleting the smiley face (which represents a face down card)
+    from the list and replaces it with a new card from the deck"""
     #dhand = deal_dhand()
     d_start_hand.__delitem__(1)
     #print(d_start_hand)
@@ -68,33 +80,22 @@ dhand = (addcard_dhand(d_start_hand))
 print("Dealers full hand",dhand)
 print ("Dealer's score is",(score(dhand)))
 
-"""This decides whether the dealer wants a new hand, scores the new hand and decides if bust"""
+
+def dhand_newcard(dhand):
+    """ This decides whether the dealer wants a new hand, scores the new hand and decides if bust. describe input and output"""
 
 
-def dhand_newcard (dhand):
+    while (score(dhand)) < 17:
+        dhand.append(new_deck.hit())
+        print("Dealer's new hand is:", dhand, "\nDealer's new score is:", score(dhand))
 
-
-    while (score(dhand)) <17:
-                dhand.append(new_deck.hit())
-                print ("Dealer's new hand is:", dhand,"\nDealer's new score is:", score(dhand))
-
-    if (score(dhand)) > 21 == 'A' in dhand:
-        (score(dhand)) - 10
+    if (score(dhand)) >= 17 and (score(dhand)) < 21:
+        print("Dealer's final score is:", score(dhand), "\nDealer has stuck")
         return dhand
 
-    elif (score(dhand)) >21:
-                print ("Dealer's score is:", score(dhand),"\nDealer is bust")
-                return dhand
-
-    elif (score(dhand)) == 17 or 18 or 19 or 20 or 21:
-                print ("Dealer's final score is:", score(dhand), "\nDealer has stuck")
-                return dhand
-
-
-
-
-
-
+    elif (score(dhand)) > 21:
+        print("Dealer's score is:", score(dhand), "\nDealer is bust")
+        return dhand
 
 
 dhand2 = dhand_newcard(dhand)
