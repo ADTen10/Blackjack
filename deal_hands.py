@@ -1,7 +1,7 @@
 import new_deck
 
 def score(hand):
-    """This function reveals the score of a hand"""
+    """This function reveals the score of a hand. Aces are treated as 11 unless the score is greater than 21 - then they are treated as 1."""
     total_0=0
 
     for card in hand:
@@ -24,7 +24,7 @@ def score(hand):
 
 
 def deal_phand():
-    """This function deals the player's starting hand"""
+    """This function deals the player two cards for their starting hand"""
     card1 = new_deck.hit()
     card2 = new_deck.hit()
     phand = [card1,card2]
@@ -54,7 +54,7 @@ def ask_player_for_hit(p1,phand):
 
 def compare_dealer_and_player_scores(p1,phand,dhand):
     """
-    compares the score of the players hand and the dealers hand and decides who has won
+    compares the score of the players hand and the dealers hand and decides who has won. This function is incomplete
     """
 
     if score(phand) == 21:
@@ -69,7 +69,7 @@ def compare_dealer_and_player_scores(p1,phand,dhand):
 
 
 def deal_dhand():
-    """This function deals 2 cards to the dealer, with only one shown"""
+    """This function deals 1 card to the dealer, with only one face dow, represented by the smiley face"""
     card = new_deck.hit()
     dhand = [card,'☺']
     return dhand

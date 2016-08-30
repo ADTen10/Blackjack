@@ -62,4 +62,4 @@ _My naming is a little bit confusing, sorry. Not sure how clean the code
     - Play script is incomplete (Blackjack Game.py)
     - Score comparison is incomplete (def compare_dealer_and_player_scores)
     - Scoring for a hand with more than one ace does not work as it should
-    -
+    
